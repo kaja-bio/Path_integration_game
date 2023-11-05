@@ -1,0 +1,357 @@
+# # Simple pygame program
+
+# # Import and initialize the pygame library
+# import pygame
+# from pygame.locals import *
+# pygame.font.init()
+# pygame.init()
+# import sys
+# import random
+# from tkinter import filedialog
+# from tkinter import *
+
+# SCREEN_WIDTH = 1000
+# SCREEN_HEIGHT = 700
+# # Set up the drawing window
+# screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+# pygame.font.get_fonts()
+# vec = pygame.math.Vector2
+
+
+# clock = pygame.time.Clock()
+# font = pygame.font.Font('ARCADECLASSIC.TTF', 40)
+
+# #define FPS
+# FPS = 60
+# FramePerSec = pygame.time.Clock()
+
+# # Predefine basic colors
+# BLUE  = (0, 0, 255)
+# RED   = (255, 0, 0)
+# GREEN = (0, 255, 0)
+# BLACK = (0, 0, 0)
+# WHITE = (255, 255, 255)
+
+# mouse_x_pos = 100
+# mouse_y_pos = 300
+
+# start = pygame.transform.scale((pygame.image.load('images/start.png')),(50,80)).convert_alpha()
+# start_rect = start.get_rect()
+# tent = pygame.transform.scale((pygame.image.load('images/tent.png')),(100,100)).convert_alpha()
+# tent_rect = tent.get_rect()
+# lake =  pygame.transform.scale((pygame.image.load('images/lake.png')),(100,150)).convert_alpha()
+# lake_rect = lake.get_rect()
+# mountain = pygame.transform.scale((pygame.image.load('images/mountain.png')),(100,150)).convert_alpha()
+# mountain_rect = mountain.get_rect()
+# food = pygame.transform.scale((pygame.image.load('images/food_stall.png')),(100,200)).convert_alpha()
+# food_rect = food.get_rect()
+# text_surface = font.render('Path  integration', True, BLACK)
+# player = pygame.transform.scale((pygame.image.load('images/hero1.png')),(160,100)).convert_alpha()
+# mouse_rect = player.get_rect(midtop=((mouse_x_pos), (mouse_y_pos)))
+
+# def draw(elapsed_time):
+#     time_text = font.render(f"Time + {round(elapsed_time)}s", 1, "white")
+#     screen.blit(time_text, ((SCREEN_WIDTH-10), (SCREEN_HEIGHT-10)))
+#     pygame.display.update()
+# # Run until the user asks to quit
+
+# class Player(pygame.sprite.Sprite):
+#     """
+#     Spawn a player
+#     """
+
+#     def __init__(self):
+#         pygame.sprite.Sprite.__init__(self)
+#         self.image = pygame.transform.scale((pygame.image.load('images/hero1.png')),(160,100)).convert_alpha()
+#         self.rect = self.image.get_rect()
+#         self.movex = 0
+#         self.movey = 0
+#     def draw(self):
+#         screen.blit(self.image, ())
+#     def update(self):
+#         self.rect.x = self.rect.x + self.movex
+#         self.rect.y = self.rect.y + self.movey
+#         if self.movex < 0:
+#             self.image = pygame.transform.flip(self.image, True, False)
+#     def control(self,x,y):
+#         self.movex += x
+#         self.movey += y
+#     def move_left(self):
+#         self.velocity = (-1, self.velocity[1])
+    
+#     def move_right(self):
+#         self.velocity = (1, self.velocity[1])
+
+# running = True
+
+
+# while running:
+
+#     # Did the user click the window close button?
+#     # for event in pygame.event.get(): #First event handler, lets user quit pygame
+#     #     if event.type == pygame.QUIT:
+#     #         running = False
+#     #     if event.type == pygame.KEYDOWN:
+#     #         if event.key == pygame.K_UP:
+#     #             mouse_y_pos -= player_vel
+#     #         elif event.key == pygame.K_DOWN:
+#     #             mouse_y_pos += player_vel
+#     #         elif event.key == pygame.K_RIGHT:
+#     #             mouse_x_pos += player_vel
+#     #         elif event.key == pygame.K_UP:
+#     #             mouse_x_pos -= player_vel
+#     player = Player()  # spawn player
+#     player.rect.x = 0  # go to x
+#     player.rect.y = 0  # go to y
+#     player_list = pygame.sprite.Group()
+#     player_list.add(player)
+#     player_vel = 5
+#     # Fill the background with white
+#     screen.fill((255, 255, 255))
+#     # Draw the rectangle that has been defined by the player class
+#     press = pygame.key.get_pressed()
+#     screen.blit(start,(20,(SCREEN_HEIGHT/2)))
+#     screen.blit(lake, (400,100))
+#     screen.blit(mountain, (700,500))
+#     screen.blit(tent, ((SCREEN_WIDTH-150), (SCREEN_HEIGHT/2)))
+#     screen.blit(text_surface,(((SCREEN_WIDTH/2) - 100), (SCREEN_HEIGHT/2)))
+#     for event in pygame.event.get():
+
+#         if event.type == pygame.QUIT:
+#             running = False
+
+#         if event.type == pygame.KEYDOWN:
+#             if event.key == pygame.K_LEFT or event.key == ord('a'):
+#                 player.control(-player_vel, 0)
+#             if event.key == pygame.K_RIGHT or event.key == ord('d'):
+#                 player.control(player_vel, 0)
+#             if event.key == pygame.K_UP or event.key == ord('w'):
+#                 print('jump')
+
+#         if event.type == pygame.KEYUP:
+#             if event.key == pygame.K_LEFT or event.key == ord('a'):
+#                 player.control(player_vel, 0)
+#             if event.key == pygame.K_RIGHT or event.key == ord('d'):
+#                 player.control(-player_vel, 0)
+    
+#     player.update()
+
+#     player.draw(screen)
+
+#     if mouse_rect.colliderect(mountain_rect):
+#        print("collision")
+
+#     pygame.display.flip()
+
+# # Done! Time to quit.
+# pygame.quit()
+
+# import pyjs
+# import pyjsdl as pg
+import pygame
+from pygame.locals import *
+# Initialize pygame
+pygame.init()
+pygame.font.init()
+pygame.font.get_fonts()
+font = pygame.font.Font('./ARCADECLASSIC.TTF', 20)
+
+# Set up screen dimensions
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 700
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+# Define colors
+BLUE  = (0, 0, 255)
+RED   = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+position = pygame.math.Vector2(screen.get_rect().center)
+player_angle = 0
+rotation_speed = 2
+
+# Load images and create image objects
+bg = pygame.image.load('images/hiking_background_real.png')
+start = pygame.transform.scale_by(pygame.image.load('images/start.png'), (0.35, 0.35)).convert_alpha()
+start_rect = start.get_rect(topleft = (20, (SCREEN_HEIGHT / 2)))
+tent = pygame.transform.scale_by(pygame.image.load('images/tent.png'), (0.25, 0.25)).convert_alpha()
+tent_rect = tent.get_rect(topleft = ((SCREEN_WIDTH - 150), (SCREEN_HEIGHT / 2)))
+lake = pygame.transform.scale_by(pygame.image.load('images/lake.png'), (0.65, 0.65)).convert_alpha()
+lake_rect = lake.get_rect(topleft = (200,80))
+mountain = pygame.transform.scale_by(pygame.image.load('images/mountain.png'), (0.35, 0.35)).convert_alpha()
+mountain_rect = mountain.get_rect(topleft = (500,450))
+food = pygame.transform.scale_by(pygame.image.load('images/food_stall.png'), (0.25, 0.25)).convert_alpha()
+food_rect = food.get_rect(topleft = (650,80))
+bg_night = pygame.image.load('images/night_background.png')
+text_box = pygame.Rect((5, 645), (990, 50))
+
+
+# Initialize clock for frame rate control
+clock = pygame.time.Clock()
+
+lake_collision = False
+mountain_collision = False
+food_collision = False
+tent_collision = False
+end_collision = False
+points = 0
+previous_positions = []
+class Player(object):
+    def __init__(self):
+        self.image = pygame.transform.scale_by(pygame.image.load('images/casper.png'), (0.5,0.5)).convert_alpha()
+        self.rect = self.image.get_rect(topleft = (40, 400))
+        self.rect.x = 40
+        self.rect.y = 400
+        self.movex = 0
+        self.movey = 0
+        self.trail = []
+    def control(self, x_movement, y_movement):
+
+        self.movex += x_movement
+        self.movey += y_movement
+        player_direction = "right"
+        if x_movement < 0:
+            if player_direction != "left":
+                self.image = pygame.transform.flip(self.image, True, False)
+                player_direction = "left"
+        elif x_movement > 0:
+            if player_direction != "right":
+                self.image = pygame.transform.flip(self.image, True, False)
+                player_direction = "right"
+    def update(self):
+        global points
+        global lake_collision
+        global mountain_collision
+        global food_collision
+        global tent_collision
+        global end_collision
+        self.rect.x += self.movex
+        self.rect.y += self.movey
+        if self.rect.colliderect(lake_rect) and points==0:
+            lake_collision = True
+            points = 1
+        if self.rect.colliderect(mountain_rect) and points == 1:
+            lake_collision = False
+            mountain_collision = True
+            points = 2
+        if self.rect.colliderect(food_rect) and points == 2:
+            mountain_collision = False
+            food_collision = True
+            points = 3
+        if self.rect.colliderect(tent_rect) and points == 3:
+            food_collision = False
+            tent_collision = True
+            points = 4
+        if points == 4 and self.rect.colliderect(start_rect):
+            end_collision = True
+            print(end_collision)
+    
+    def draw(self):
+        screen.blit(self.image, self.rect)
+        pos = self.rect.center
+        if self.trail:
+            if self.trail[-1] != pos:
+                self.trail.append(pos)
+        else:
+            self.trail = [pos, pos]
+
+text_surface = font.render("Path integration", True, BLACK)
+# Main game loop
+player = Player()
+running = True
+while running:
+    x_movement = 0
+    y_movement = 0
+    player_vel = 5
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            delay = pygame.time.get_ticks()
+            if delay <= 3000:
+                text_surface = font.render("Welcome, hiker", True, BLACK)
+                screen.blit(text_surface,(450,600))
+            if delay >= 3000:
+                text_surface = font.render("It's quite hot today. Go take a dip in the lake.", True, BLACK)
+                screen.blit(text_surface,(300, 560))
+            keys = pygame.key.get_pressed()
+            if event.key == pygame.K_LEFT or event.key == ord('a'):
+                player.control(-player_vel, 0)
+            if event.key == pygame.K_RIGHT or event.key == ord('d'):
+                player.control(player_vel, 0)
+            if event.key == pygame.K_UP or event.key == ord('w'):
+                player.control(0, -player_vel)
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                player.control(0, player_vel)
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == ord('a'):
+                player.control(player_vel, 0)
+            if event.key == pygame.K_RIGHT or event.key == ord('d'):
+                player.control(-player_vel, 0)  #finally figured it out lol - i forgot that once you stopped pressing the key, you also had to subtract the velocity from the update rather than just keeping it the same to get the player to stop.
+            if event.key == pygame.K_UP or event.key == ord('w'):
+                player.control(0, player_vel)
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                player.control(0, -player_vel)
+
+    # Update player's control and movement
+    player.control(x_movement, y_movement)
+    if len(player.trail) >= 2:
+        pygame.draw.lines(screen, (0,0,0), False, player.trail)
+    # Update the display
+    screen.blit(bg, (0, 0))
+    screen.blit(start, (20, SCREEN_HEIGHT / 2))
+    screen.blit(lake, (200, 80))
+    screen.blit(mountain, (500, 450))
+    screen.blit(food, (650,80))
+    screen.blit(tent, (SCREEN_WIDTH - 150, SCREEN_HEIGHT / 2))
+    pygame.draw.rect(screen, BLACK, ((0, 640), (1000, 160)))
+    pygame.draw.rect(screen, WHITE, text_box)
+    if lake_collision == False and points == 0:
+        pygame.draw.rect(screen, WHITE, text_box)
+        screen.blit(text_surface,(300,650))
+    if lake_collision:
+        pygame.draw.rect(screen, WHITE, text_box)
+        text_surface = font.render("You've gone for a dip and are ready to take on the mountain", True, BLACK)
+        screen.blit(text_surface,(200,650))
+    if mountain_collision:
+        text_surface = font.render("You've gotten a little hungry - why not stop for some food?", True, BLACK)
+        screen.blit(text_surface,(300,650))
+    if food_collision:
+        text_surface = font.render("I think it's finally time to head to the campsite.", True, BLACK)
+        screen.blit(text_surface,(300,650))
+    if tent_collision:
+        screen.blit(bg_night, (0,0))
+        pygame.draw.rect(screen, BLACK, ((0, 640), (1000, 160)))
+        pygame.draw.rect(screen, WHITE, text_box)
+        start_rect = start.get_rect(topleft = (20, (SCREEN_HEIGHT / 2)))
+        text_surface = font.render("Oh no! Your tent has flooded in the middle of the night.", True, BLACK)
+        text_surface2 = font.render("You have to get back home to dry off - can you navigate there?", True, BLACK)
+        screen.blit(text_surface, (330,650))
+        screen.blit(text_surface2, (250,670))
+    if end_collision:
+        screen.fill(WHITE)
+        text_surface = font.render("You probably went straight back to the start instead of zigzaging the same way you came.", True, BLACK)
+        text_surface2 = font.render("Although you didn't take this path before and despite not being able to see the start,", True, BLACK)
+        text_surface3 = font.render("you knew how far and where you had travelled.", True, BLACK)
+        text_surface4 = font.render("This phenomenon of internally calculating your vector displacement without using external cues", True, BLACK)
+        text_surface5 = font.render("is called PATH INTEGRATION", True, BLACK)
+        screen.blit(text_surface, (130,200))
+        screen.blit(text_surface2, (150,270))
+        screen.blit(text_surface3, (250,300))
+        screen.blit(text_surface4, (30,360))
+        screen.blit(text_surface5, (450,390))
+
+        # probably do this by adding a big screen blit of night over the entire screen, then screen blitting the player class again? idk. 
+    
+    player.update()
+    player.draw()
+    pygame.display.update()
+
+    # Limit frame rate
+    clock.tick(60)
+
+# Quit pygame
+pygame.quit()
+
